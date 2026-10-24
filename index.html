@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Raah — Route choices that fit you</title>
+    <meta
+      name="description"
+      content="Compare route time, cost, comfort, weather, and safety-supporting signals with local demo data."
+    />
+    <meta name="theme-color" content="#283593" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/raah-icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Raah" />
+  </head>
+  <body>
+    <div id="root">
+      <!-- Branded splash: replaced by React as soon as the app mounts. -->
+      <div
+        style="
+          min-height: 100vh;
+          min-height: 100dvh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          background: #f6f7fb;
+          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+          color: #1e293b;
+        "
+      >
+        <svg width="72" height="72" viewBox="0 0 512 512" aria-hidden="true">
+          <rect x="16" y="16" width="480" height="480" rx="112" fill="#283593" />
+          <path
+            d="M176 400 L176 150 Q176 118 216 116 Q300 112 312 168 Q322 220 258 234 L192 248 L338 392"
+            fill="none"
+            stroke="#f6f7fb"
+            stroke-width="30"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="356" cy="400" r="34" fill="#5eead4" />
+          <circle cx="356" cy="400" r="14" fill="#283593" />
+        </svg>
+        <div style="margin-top: 14px; font-size: 1.3rem; font-weight: 800; color: #283593">Raah</div>
+        <div style="font-size: 0.85rem; color: #5b6577">Choose the route that fits you.</div>
+        <div
+          style="
+            margin-top: 20px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 3px solid #e8eaf6;
+            border-top-color: #283593;
+            animation: raah-spin 0.9s linear infinite;
+          "
+        ></div>
+        <style>
+          @keyframes raah-spin {
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+      </div>
+    </div>
+    <noscript>
+      <div style="font-family: system-ui, sans-serif; padding: 2rem; max-width: 32rem; margin: 0 auto">
+        <h1>Raah</h1>
+        <p>
+          Raah is a route-comparison planner. It needs JavaScript enabled to run. All data in Raah
+          is synthetic demo data and no network connection is required beyond loading the app.
+        </p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

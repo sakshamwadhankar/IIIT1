@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="raah-logo-mono-title">
+  <title id="raah-logo-mono-title">Raah monochrome logo</title>
+  <path
+    d="M176 400 L176 150 Q176 118 216 116 Q300 112 312 168 Q322 220 258 234 L192 248 L338 392"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="30"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="356" cy="400" r="34" fill="none" stroke="currentColor" stroke-width="22" />
+</svg>

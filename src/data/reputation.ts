@@ -1,0 +1,80 @@
+import type { ReputationFixture } from '../types/evidence';
+
+/**
+ * Reputation records for route-supporting places. Reputation belongs to
+ * places, never to people or neighborhoods. Badges are separated:
+ * Trusted (consistency/review quality), Premium (comfort/service, NOT
+ * safety), Safety-supporting (hours, staff, lighting, visibility).
+ */
+export const REPUTATION_FIXTURES: ReputationFixture[] = [
+  {
+    id: 'pharmacy',
+    placeId: 'place-greencare-pharmacy',
+    placeName: 'GreenCare Pharmacy',
+    badges: ['trusted', 'safety-supporting'],
+    rating: 4.6,
+    summary: 'Consistently good reviews; open and staffed in the evening.',
+    safetyContext: 'Well-lit entrance on a public road; staffed counter until closing.',
+    verifiedAt: 'Verified 18 min ago',
+    staffed: true,
+    openUntil: '10:00 PM',
+    sourceLabel: 'Demo place checks',
+    demoOnly: true,
+  },
+  {
+    id: 'corner-cafe',
+    placeId: 'place-corner-cafe',
+    placeName: 'Corner Café',
+    badges: ['premium'],
+    rating: 4.3,
+    summary: 'Comfortable seating and table service. Premium describes comfort, not safety.',
+    safetyContext: 'Open terrace facing the street; visible from the main road.',
+    verifiedAt: 'Verified 26 min ago',
+    staffed: true,
+    openUntil: '11:00 PM',
+    sourceLabel: 'Demo place checks',
+    demoOnly: true,
+  },
+  {
+    id: 'main-gate-pickup',
+    placeId: 'place-main-gate-pickup',
+    placeName: 'Main Gate pickup point',
+    badges: ['safety-supporting'],
+    rating: 4.2,
+    summary: 'Marshaled pickup bay with an active queue during evening hours.',
+    safetyContext: 'Lighting reported as good; marshal present until 9:30 PM.',
+    verifiedAt: 'Verified 22 min ago',
+    staffed: true,
+    openUntil: '9:30 PM',
+    sourceLabel: 'Demo place checks',
+    demoOnly: true,
+  },
+  {
+    id: 'help-desk',
+    placeId: 'place-community-help-desk',
+    placeName: 'Community Help Desk',
+    badges: ['trusted', 'safety-supporting'],
+    rating: 4.5,
+    summary: 'Public desk with consistent evening staffing on weekdays.',
+    safetyContext: 'Located inside the lit community centre lobby.',
+    verifiedAt: 'Verified 35 min ago',
+    staffed: true,
+    openUntil: '9:00 PM',
+    sourceLabel: 'Demo place checks',
+    demoOnly: true,
+  },
+  {
+    id: 'metro',
+    placeId: 'place-indiranagar-metro-gate-3',
+    placeName: 'Indiranagar Metro Gate 3',
+    badges: ['safety-supporting'],
+    rating: 4.5,
+    summary: 'Ticket counter open until 10:00 PM; plaza lighting reported as good.',
+    safetyContext: 'Staffed counter and lit plaza with active vendors in the evening.',
+    verifiedAt: 'Verified 20 min ago',
+    staffed: true,
+    openUntil: '10:00 PM',
+    sourceLabel: 'Demo place checks',
+    demoOnly: true,
+  },
+];

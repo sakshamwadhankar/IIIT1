@@ -1,0 +1,55 @@
+import type { CleanlinessFixture } from '../types/evidence';
+
+/** Synthetic street-cleanliness survey records for the demo corridors. */
+export const CLEANLINESS_FIXTURES: CleanlinessFixture[] = [
+  {
+    id: 'college',
+    corridorName: 'College Road',
+    rating: 'good',
+    surveyedAt: 'Surveyed yesterday',
+    note: 'Clean, well-maintained footpath with working lights.',
+    sourceLabel: 'Demo civic survey (sample)',
+    routeIds: ['route-safest-fit', 'route-cleanest'],
+    demoOnly: true,
+  },
+  {
+    id: 'lit-avenue',
+    corridorName: 'Lit Avenue',
+    rating: 'good',
+    surveyedAt: 'Surveyed yesterday',
+    note: 'Tidy sidewalk; shopfronts keep the stretch active in the evening.',
+    sourceLabel: 'Demo civic survey (sample)',
+    routeIds: ['route-safest-fit'],
+    demoOnly: true,
+  },
+  {
+    id: 'riverside',
+    corridorName: 'Riverside stretch',
+    rating: 'excellent',
+    surveyedAt: 'Surveyed yesterday',
+    note: 'Newly repaved walkway; no construction debris reported.',
+    sourceLabel: 'Demo civic survey (sample)',
+    routeIds: ['route-cleanest'],
+    demoOnly: true,
+  },
+  {
+    id: 'market',
+    corridorName: 'Market Road',
+    rating: 'fair',
+    surveyedAt: 'Surveyed yesterday',
+    note: 'Construction dust and market litter near the crossings.',
+    sourceLabel: 'Demo civic survey (sample)',
+    routeIds: ['route-fastest', 'route-best-value', 'route-balanced'],
+    demoOnly: true,
+  },
+  {
+    id: 'station-boulevard',
+    corridorName: 'Station Boulevard',
+    rating: 'good',
+    surveyedAt: 'Surveyed yesterday',
+    note: 'Regularly swept; shelters are clean and lit.',
+    sourceLabel: 'Demo civic survey (sample)',
+    routeIds: ['route-best-value', 'route-balanced'],
+    demoOnly: true,
+  },
+];
