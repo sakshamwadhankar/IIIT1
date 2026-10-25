@@ -18,7 +18,7 @@ export const REPUTATION_FIXTURES: ReputationFixture[] = [
     verifiedAt: 'Verified 18 min ago',
     staffed: true,
     openUntil: '10:00 PM',
-    sourceLabel: 'Demo place checks',
+    sourceLabel: 'Place checks (sample)',
     demoOnly: true,
   },
   {
@@ -32,7 +32,7 @@ export const REPUTATION_FIXTURES: ReputationFixture[] = [
     verifiedAt: 'Verified 26 min ago',
     staffed: true,
     openUntil: '11:00 PM',
-    sourceLabel: 'Demo place checks',
+    sourceLabel: 'Place checks (sample)',
     demoOnly: true,
   },
   {
@@ -46,7 +46,7 @@ export const REPUTATION_FIXTURES: ReputationFixture[] = [
     verifiedAt: 'Verified 22 min ago',
     staffed: true,
     openUntil: '9:30 PM',
-    sourceLabel: 'Demo place checks',
+    sourceLabel: 'Place checks (sample)',
     demoOnly: true,
   },
   {
@@ -60,7 +60,7 @@ export const REPUTATION_FIXTURES: ReputationFixture[] = [
     verifiedAt: 'Verified 35 min ago',
     staffed: true,
     openUntil: '9:00 PM',
-    sourceLabel: 'Demo place checks',
+    sourceLabel: 'Place checks (sample)',
     demoOnly: true,
   },
   {
@@ -74,7 +74,7 @@ export const REPUTATION_FIXTURES: ReputationFixture[] = [
     verifiedAt: 'Verified 20 min ago',
     staffed: true,
     openUntil: '10:00 PM',
-    sourceLabel: 'Demo place checks',
+    sourceLabel: 'Place checks (sample)',
     demoOnly: true,
   },
 ];

@@ -1,5 +1,6 @@
 import Icon from '../shared/Icon';
 import RouteMap from '../routes/RouteMap';
+import Compass, { bearingBetween } from './Compass';
 import type { RankedRoute } from '../../types/route';
 import { DEMO_ROUTES } from '../app/routeLookup';
 import { getPlace } from '../../data/places';
@@ -31,13 +32,17 @@ export default function ActiveRoutePreview({
   const { route, totals } = ranked;
   const nextStopPlace = stopIds.length > 0 ? getPlace(stopIds[0]) : null;
   const reassurance = ranked.reasons.slice(0, 2).join(' ');
+  // Direction of the first leg of the route geometry (map north = up).
+  const path = route.mapPath;
+  const bearing =
+    path.length > 1 ? bearingBetween(path[0], path[1]) : 0;
 
   return (
     <section className="active-preview" aria-labelledby="active-preview-title">
       <div className="active-preview__map card">
         <div className="active-preview__map-head">
           <div>
-            <p className="overlay__kicker">Active route preview · demo — no real navigation</p>
+            <p className="overlay__kicker">Active route preview — no real navigation</p>
             <h1 id="active-preview-title">{route.name}</h1>
           </div>
           <p className="active-preview__eta">
@@ -57,11 +62,8 @@ export default function ActiveRoutePreview({
 
       <div className="active-preview__panel card">
         <div className="active-preview__segment">
-          <p className="active-preview__kicker-line">Current segment</p>
-          <p className="active-preview__segment-text">
-            <Icon name="route" size={18} />
-            {route.steps[0]}
-          </p>
+          <p className="active-preview__kicker-line">Current direction</p>
+          <Compass bearingDeg={bearing} instruction={route.steps[0]} />
         </div>
 
         <div className="active-preview__next">

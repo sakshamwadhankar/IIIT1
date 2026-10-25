@@ -18,7 +18,6 @@ export default function RouteSummaryBar({ state, routeCount, onEditTrip }: Route
           {routeCount} routes · {preferenceSummaryLabel(state.preferences, state.primaryPreference)}
         </strong>
         <span className="route-summary-bar__meta">
-          · Demo time {state.demoClock} · Synthetic demo data
         </span>
       </p>
       <button type="button" className="btn btn--ghost btn--small" onClick={onEditTrip}>

@@ -14,7 +14,7 @@ export const INCIDENT_TREND_FIXTURE: IncidentTrendFixture = {
   period: 'Last 30 days',
   weeklyCounts: [12, 11, 10, 9, 8, 7],
   baselineCount: 11,
-  sourceLabel: 'Demo safety summary (synthetic)',
+  sourceLabel: 'Safety summary (sample)',
   confidence: 'limited',
   routeIds: [
     'route-safest-fit',

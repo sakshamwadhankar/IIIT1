@@ -21,11 +21,11 @@ export default function BrandMark({ size = 32, variant = 'color', className }: B
       aria-label="Raah"
       className={className}
     >
-      {!mono && <rect x="16" y="16" width="480" height="480" rx="112" fill="#283593" />}
+      {!mono && <rect x="16" y="16" width="480" height="480" rx="112" fill="#253b9b" />}
       <path
         d="M176 400 L176 150 Q176 118 216 116 Q300 112 312 168 Q322 220 258 234 L192 248 L338 392"
         fill="none"
-        stroke={mono ? 'currentColor' : '#f6f7fb'}
+        stroke={mono ? 'currentColor' : '#fff8e9'}
         strokeWidth="30"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -34,8 +34,8 @@ export default function BrandMark({ size = 32, variant = 'color', className }: B
         <circle cx="356" cy="400" r="34" fill="none" stroke="currentColor" strokeWidth="22" />
       ) : (
         <>
-          <circle cx="356" cy="400" r="34" fill="#5eead4" />
-          <circle cx="356" cy="400" r="14" fill="#283593" />
+          <circle cx="356" cy="400" r="34" fill="#ffc52e" />
+          <circle cx="356" cy="400" r="14" fill="#253b9b" />
         </>
       )}
     </svg>

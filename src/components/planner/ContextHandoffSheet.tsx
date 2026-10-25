@@ -5,7 +5,6 @@ import { DEMO_TRIP } from '../../data/demo-trip';
 import { ORIGIN_SUGGESTION_IDS, getPlace } from '../../data/places';
 
 type ContextHandoffSheetProps = {
-  demoClock: string;
   onConfirm: () => void;
   onChangeOrigin: (placeId: string) => void;
   onDismiss: () => void;
@@ -16,7 +15,6 @@ type ContextHandoffSheetProps = {
  * actions start navigation — "Use as starting point" only fills the origin.
  */
 export default function ContextHandoffSheet({
-  demoClock,
   onConfirm,
   onChangeOrigin,
   onDismiss,
@@ -28,33 +26,33 @@ export default function ContextHandoffSheet({
     <section className="context-sheet" aria-labelledby="context-sheet-title">
       <div className="context-sheet__map" aria-hidden="true">
         <svg viewBox="0 0 320 110" className="context-sheet__map-svg">
-          <rect x="0" y="0" width="320" height="110" rx="12" fill="#eef1fa" />
-          <g stroke="#d5dbeb" strokeWidth="5" strokeLinecap="round">
+          <rect x="0" y="0" width="320" height="110" rx="12" fill="#f9a46f" />
+          <g stroke="#ffffff" strokeWidth="5" strokeLinecap="round">
             <path d="M-10 82 H330" />
             <path d="M150 -10 V120" />
             <path d="M240 -10 V120" />
           </g>
-          <g stroke="#d5dbeb" strokeWidth="2.5">
+          <g stroke="#ffffff" strokeWidth="2.5">
             <path d="M-10 44 H330" />
             <path d="M60 -10 V120" />
           </g>
           {/* Building with lit exit */}
-          <rect x="96" y="18" width="72" height="46" rx="6" fill="#c9d1ea" />
-          <rect x="126" y="64" width="14" height="12" rx="2" fill="#f4c95d" />
-          <circle cx="133" cy="82" r="7" fill="var(--raah-mint-300)" stroke="#0f766e" strokeWidth="2" />
+          <rect x="96" y="18" width="72" height="46" rx="6" fill="#ffd9a3" stroke="#202124" strokeOpacity="0.18" />
+          <rect x="126" y="64" width="14" height="12" rx="2" fill="#ffc52e" />
+          <circle cx="133" cy="82" r="7" fill="#fff8e9" stroke="#23864a" strokeWidth="2" />
           <path
             d="M133 82 C 170 82, 185 60, 214 58 S 268 52, 286 50"
             fill="none"
-            stroke="var(--raah-indigo-700)"
+            stroke="var(--raah-route-blue)"
             strokeWidth="3.5"
             strokeLinecap="round"
             strokeDasharray="1 6"
           />
-          <circle cx="286" cy="50" r="6" fill="var(--raah-indigo-700)" />
-          <text x="204" y="100" fontSize="9" fill="#5b6577" textAnchor="middle">
+          <circle cx="286" cy="50" r="6" fill="var(--raah-route-blue)" />
+          <text x="204" y="100" fontSize="9" fill="#7a4517" textAnchor="middle" fontWeight="600">
             College Road
           </text>
-          <text x="168" y="14" fontSize="9" fill="#5b6577" textAnchor="middle">
+          <text x="168" y="14" fontSize="9" fill="#7a4517" textAnchor="middle" fontWeight="600">
             {suggested.name}
           </text>
         </svg>
@@ -65,7 +63,7 @@ export default function ContextHandoffSheet({
           <h2 id="context-sheet-title">{DEMO_TRIP.detectedContext.sentence}</h2>
         </div>
         <p className="context-sheet__detail">
-          {DEMO_TRIP.detectedContext.detail} Demo time {demoClock}.
+          {DEMO_TRIP.detectedContext.detail}
         </p>
         {!changing ? (
           <div className="context-sheet__actions">
@@ -83,7 +81,7 @@ export default function ContextHandoffSheet({
         ) : (
           <div className="context-sheet__change">
             <p className="context-sheet__change-label" id="context-origin-label">
-              Choose a demo starting point:
+              Suggested starting point:
             </p>
             <ul className="suggestion-list" aria-labelledby="context-origin-label">
               {ORIGIN_SUGGESTION_IDS.map((placeId) => {
@@ -99,7 +97,6 @@ export default function ContextHandoffSheet({
                     >
                       <Icon name="pin" size={18} />
                       <span>{place.name}</span>
-                      <span className="suggestion-row__meta">Demo place</span>
                     </button>
                   </li>
                 );

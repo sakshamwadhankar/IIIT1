@@ -6,7 +6,7 @@ import { createInitialPlannerState } from '../src/hooks/usePlannerState';
 
 /**
  * Integration test for the exact demo path (TRD §17 browser smoke test):
- * open → confirm context → destination → Safety-first + well-lit +
+ * open → destination → Safety-first + well-lit +
  * avoid nightlife → compare 5 routes → evidence → add GreenCare Pharmacy →
  * reorder → choose route → start preview.
  */
@@ -14,8 +14,6 @@ import { createInitialPlannerState } from '../src/hooks/usePlannerState';
 const METRO = /Indiranagar Metro Gate 3/i;
 
 async function startComparison(user: ReturnType<typeof userEvent.setup>) {
-  await user.click(screen.getByRole('button', { name: /Use as starting point/i }));
-
   const destinationField = screen.getByRole('button', {
     name: /Destination — Select a destination/i,
   });
@@ -42,32 +40,18 @@ describe('Raah demo flow', () => {
   it('launches the branded shell without starting navigation', () => {
     render(<App />);
     expect(screen.getAllByRole('img', { name: 'Raah' }).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText('Choose the route that fits you.')).toBeInTheDocument();
-    expect(screen.getByText(/Synthetic demo data · Offline-ready/i)).toBeInTheDocument();
-    // Context detection suggests but never starts anything.
-    expect(screen.getByText(/Looks like you’re walking from North Campus Library/i)).toBeInTheDocument();
+    // The home greeting shows and navigation never starts by itself.
+    expect(screen.getByText(/What’s the mood today/i)).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /End preview/i })).toBeNull();
   });
 
-  it('fills the origin on confirmation but stays in the planner', async () => {
-    const user = userEvent.setup();
+  it('preselects the current location as the starting point', () => {
     render(<App />);
-    await user.click(screen.getByRole('button', { name: /Use as starting point/i }));
     expect(
-      screen.getByRole('button', { name: /Starting point — North Campus Library/i }),
+      screen.getByRole('button', { name: /Starting point — Current location/i }),
     ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /^Compare routes$/i })).toBeDisabled();
     expect(screen.getByText(/Choose a destination to compare routes/i)).toBeInTheDocument();
-  });
-
-  it('dismisses the context sheet without filling the origin', async () => {
-    const user = userEvent.setup();
-    render(<App />);
-    await user.click(screen.getByRole('button', { name: /Not now/i }));
-    expect(screen.queryByText(/Looks like you’re walking/i)).not.toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /Starting point — Choose a starting point/i }),
-    ).toBeInTheDocument();
   });
 
   it('runs the complete demo path end to end', async () => {
@@ -96,8 +80,8 @@ describe('Raah demo flow', () => {
     await user.click(viewEvidenceButtons[0]);
     const dialog = screen.getByRole('dialog', { name: /College Road lit loop/i });
     expect(within(dialog).getByText(/Raah is a planning aid/i)).toBeInTheDocument();
-    expect(within(dialog).getAllByText(/Demo traffic feed/i).length).toBeGreaterThan(0);
-    expect(within(dialog).getAllByText(/Demo place checks/i).length).toBeGreaterThan(0);
+    expect(within(dialog).getAllByText(/City traffic feed/i).length).toBeGreaterThan(0);
+    expect(within(dialog).getAllByText(/Place checks/i).length).toBeGreaterThan(0);
     await user.keyboard('{Escape}');
     expect(screen.queryByRole('dialog', { name: /College Road lit loop/i })).toBeNull();
 
@@ -139,8 +123,8 @@ describe('Raah demo flow', () => {
 
     // Step 12: explicit start → active preview.
     await user.click(screen.getByRole('button', { name: /Start route/i }));
-    expect(await screen.findByText(/Active route preview · demo/i)).toBeInTheDocument();
-    expect(screen.getByText(/Current segment/i)).toBeInTheDocument();
+    expect((await screen.findAllByText(/Active route preview/i)).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Current direction/i)).toBeInTheDocument();
     expect(screen.getByText(/Upcoming stop/i)).toBeInTheDocument();
     expect(screen.getByText(/Rain likely in 35–40 min/i)).toBeInTheDocument();
     expect(screen.getByText(/You are on the route you selected because/i)).toBeInTheDocument();
@@ -154,7 +138,6 @@ describe('Raah demo flow', () => {
   it('shows the no-perfect-match state and recovers when preferences conflict', async () => {
     const user = userEvent.setup();
     render(<App />);
-    await user.click(screen.getByRole('button', { name: /Use as starting point/i }));
     await user.click(
       screen.getByRole('button', { name: /Destination — Select a destination/i }),
     );
@@ -175,7 +158,6 @@ describe('Raah demo flow', () => {
   it('keeps the fastest option available and clearly caveated', async () => {
     const user = userEvent.setup();
     render(<App />);
-    await user.click(screen.getByRole('button', { name: /Use as starting point/i }));
     await user.click(
       screen.getByRole('button', { name: /Destination — Select a destination/i }),
     );

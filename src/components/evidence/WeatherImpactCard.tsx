@@ -13,7 +13,7 @@ export function WeatherImpactCard({ route }: { route: { comfort: { coveredWalkin
         <span className="weather-card__probability">{rain.probabilityPercent}% chance</span>
       </div>
       <p className="weather-card__window">
-        Light rain likely between {rain.rainWindow} — about 40 minutes after the demo clock.
+        Light rain likely between {rain.rainWindow} — within the first hour of the trip window.
       </p>
       <p className="weather-card__coverage">
         Selected route keeps <strong>{route.comfort.coveredWalkingMeters} m</strong> of the{' '}
@@ -21,7 +21,7 @@ export function WeatherImpactCard({ route }: { route: { comfort: { coveredWalkin
         <strong>{route.weatherImpact}</strong>.
       </p>
       <p className="weather-card__meta">
-        Source: {rain.sourceLabel} · {rain.issuedAt} · Medium confidence · Demo forecast
+        Source: {rain.sourceLabel} · {rain.issuedAt} · Medium confidence · Forecast model
       </p>
     </div>
   );
@@ -40,7 +40,7 @@ export function IncidentTrendCard() {
   const baselineY = height - (trend.baselineCount / max) * (height - 6) - 3;
 
   return (
-    <div className="trend-card" aria-label="Incident trend for the demo corridor">
+    <div className="trend-card" aria-label="Incident trend for the route corridor">
       <div className="trend-card__head">
         <Icon name="shield" size={20} />
         <h4>Incident trend — {trend.period}</h4>
@@ -52,12 +52,12 @@ export function IncidentTrendCard() {
         role="img"
         aria-label={`Weekly reported incidents over six weeks: ${trend.weeklyCounts.join(', ')}, against a baseline of ${trend.baselineCount}.`}
       >
-        <line x1="0" y1={baselineY} x2={width} y2={baselineY} stroke="#b6bcd0" strokeDasharray="4 3" strokeWidth="1.5" />
-        <polyline points={points} fill="none" stroke="#0f766e" strokeWidth="2.5" strokeLinecap="round" />
+        <line x1="0" y1={baselineY} x2={width} y2={baselineY} stroke="#b9b4a4" strokeDasharray="4 3" strokeWidth="1.5" />
+        <polyline points={points} fill="none" stroke="#23864a" strokeWidth="2.5" strokeLinecap="round" />
       </svg>
       <p className="trend-card__note">{trend.scopeNote}</p>
       <p className="trend-card__meta">
-        Source: {trend.sourceLabel} · Period: {trend.period} · Limited evidence · Demo area only
+        Source: {trend.sourceLabel} · Period: {trend.period} · Limited evidence · Area-level data only
       </p>
     </div>
   );

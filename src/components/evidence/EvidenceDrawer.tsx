@@ -76,7 +76,7 @@ export default function EvidenceDrawer({ open, ranked, stopIds, onClose }: Evide
       >
         <header className="overlay__header overlay__header--sticky">
           <div>
-            <p className="overlay__kicker">Route evidence · Demo data</p>
+            <p className="overlay__kicker">Route evidence</p>
             <h2 id="evidence-drawer-title">{route.name}</h2>
             <p className="overlay__sub">
               {routeLabelTitle(route.label)} · {formatMinutes(totals.etaMinutes)} ·{' '}
@@ -114,7 +114,7 @@ export default function EvidenceDrawer({ open, ranked, stopIds, onClose }: Evide
             <StaleDataState
               detail={
                 route.confidence === 'limited'
-                  ? 'Signals for this route are incomplete in the demo data — the listed freshness times show which items are older.'
+                  ? 'Signals for this route are incomplete — the listed freshness times show which items are older.'
                   : 'One or more signals below were last refreshed yesterday.'
               }
             />
@@ -127,7 +127,7 @@ export default function EvidenceDrawer({ open, ranked, stopIds, onClose }: Evide
                 label="Lighting coverage"
                 value={`${route.safety.lightingPercent}%`}
                 meterPercent={route.safety.lightingPercent}
-                note="Share of the walking segments in lit zones (demo survey)."
+                note="Share of the walking segments in lit zones (area survey)."
               />
               <SignalRow
                 label="Populated segments"
@@ -153,7 +153,7 @@ export default function EvidenceDrawer({ open, ranked, stopIds, onClose }: Evide
                       ? 'Near 30-day baseline'
                       : 'Above 30-day baseline'
                 }
-                note="Area-level context for the demo corridor — not a prediction for any individual journey."
+                note="Area-level context for this corridor — not a prediction for any individual journey."
               />
               <SignalRow label="Road crossings" value={`${route.comfort.crossings} crossings`} />
             </div>
@@ -165,7 +165,7 @@ export default function EvidenceDrawer({ open, ranked, stopIds, onClose }: Evide
               <SignalRow
                 label="Sidewalk cleanliness"
                 value={route.comfort.cleanliness}
-                note="From the demo civic survey, refreshed yesterday."
+                note="From the area civic survey, refreshed yesterday."
               />
               <SignalRow
                 label="Covered walking"
@@ -197,7 +197,7 @@ export default function EvidenceDrawer({ open, ranked, stopIds, onClose }: Evide
                 ))}
               </ul>
             ) : (
-              <p className="evidence-empty">No traffic signals for this route in the demo area.</p>
+              <p className="evidence-empty">No traffic signals for this route in this area.</p>
             )}
             <WeatherImpactCard route={route} />
             <IncidentTrendCard />
@@ -232,7 +232,7 @@ export default function EvidenceDrawer({ open, ranked, stopIds, onClose }: Evide
           <footer className="evidence-disclaimer">
             <Icon name="shield" size={16} />
             <p>
-              Raah is a planning aid. Route signals are synthetic demo data and do not guarantee
+              Raah is a planning aid. Route signals are illustrative and do not guarantee
               personal safety.
             </p>
           </footer>

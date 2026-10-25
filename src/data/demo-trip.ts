@@ -9,7 +9,7 @@ export const DEMO_TRIP = {
   /** Fictional detected context shown on the context handoff sheet. */
   detectedContext: {
     sentence: 'Looks like you’re walking from North Campus Library.',
-    detail: 'Detected building-to-street context · Demo suggestion, not GPS.',
+    detail: 'Detected building-to-street context · A suggestion, not GPS.',
     originId: 'place-north-campus-library',
   },
   /** Destination used in the primary demo scenario. */

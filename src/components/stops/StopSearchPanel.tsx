@@ -48,7 +48,7 @@ export default function StopSearchPanel({
         </header>
 
         <p className="overlay__intro">
-          Demo suggestions near your route. Raah shows the detour before anything is added.
+          Suggested stops near your route. Raah shows the detour before anything is added.
         </p>
 
         <ul className="suggestion-list stop-search__list">
@@ -89,7 +89,7 @@ export default function StopSearchPanel({
             <p className="detour-preview__meta">
               {pending.openUntil ? `Open until ${pending.openUntil} · ` : ''}
               {pending.staffed ? 'staffed · ' : ''}
-              {pending.badges?.includes('trusted') ? 'trusted nearby stop' : 'demo place'}
+              {pending.badges?.includes('trusted') ? 'trusted nearby stop' : 'suggested stop'}
             </p>
             {pending.safetySupportingContext ? (
               <p className="detour-preview__context">Safety context: {pending.safetySupportingContext}</p>

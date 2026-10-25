@@ -1,10 +1,10 @@
+import { useEffect } from 'react';
 import Icon from '../shared/Icon';
 import LocationField, { FieldLabel } from './LocationField';
 import ModeSelector from './ModeSelector';
 import PreferenceChips from './PreferenceChips';
 import StopList from '../stops/StopList';
-import EmptyState from '../shared/EmptyState';
-import ContextHandoffSheet from './ContextHandoffSheet';
+import HomeAnimation from '../app/HomeAnimation';
 import { PRIMARY_PREFERENCES } from '../../data/preferences';
 import {
   DESTINATION_SUGGESTION_IDS,
@@ -12,15 +12,11 @@ import {
   STOP_SUGGESTION_IDS,
   getPlace,
 } from '../../data/places';
-import { DEMO_TRIP } from '../../data/demo-trip';
 import type { PlannerState, PreferenceKey, PrimaryPreference, TravelMode } from '../../types/planner';
 import type { DemoPlace } from '../../types/planner';
 
 type TripSetupProps = {
   state: PlannerState;
-  onConfirmContext: () => void;
-  onChangeOrigin: (placeId: string) => void;
-  onDismissContext: () => void;
   onSetOrigin: (placeId: string) => void;
   onSetDestination: (placeId: string) => void;
   onAddStop: () => void;
@@ -38,12 +34,13 @@ function getPlaceOrNull(id: string | null): DemoPlace | null {
   return id ? getPlace(id) : null;
 }
 
-/** Screen A (context handoff) + Screen B (trip setup). */
+/**
+ * Home screen: a greeting, the animated city scene, then the trip form.
+ * The starting point is selected automatically as the current location —
+ * only the destination needs input before comparing routes.
+ */
 export default function TripSetup({
   state,
-  onConfirmContext,
-  onChangeOrigin,
-  onDismissContext,
   onSetOrigin,
   onSetDestination,
   onAddStop,
@@ -56,25 +53,37 @@ export default function TripSetup({
   onCompare,
   canUndoRemove,
 }: TripSetupProps) {
-  const showContextSheet =
-    !state.originId && !state.contextDismissed && Boolean(state.contextSuggestionId);
+  // Current location is preselected without any user action.
+  useEffect(() => {
+    if (!state.originId && state.contextSuggestionId) {
+      onSetOrigin(state.contextSuggestionId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const destinationMissing = !state.destinationId;
-  const hasAnyContent = Boolean(state.originId || state.destinationId || state.stopIds.length);
+  const originPlace = getPlaceOrNull(state.originId);
+  // The auto-selected origin is the detected current location.
+  const originDisplay =
+    originPlace && originPlace.category === 'origin'
+      ? { ...originPlace, name: 'Current location' }
+      : originPlace;
 
   return (
     <div className="trip-setup">
-      {showContextSheet ? (
-        <ContextHandoffSheet
-          demoClock={state.demoClock}
-          onConfirm={onConfirmContext}
-          onChangeOrigin={onChangeOrigin}
-          onDismiss={onDismissContext}
-        />
-      ) : null}
+      <div className="home-anim-panel">
+        <div className="trip-setup__hero">
+          <h1 className="trip-setup__greeting">What’s the mood today?</h1>
+          <p className="trip-setup__sub">
+            Pick a destination and Raah lines up the routes that fit.
+          </p>
+        </div>
+        <HomeAnimation />
+      </div>
 
       <div className="trip-setup__grid">
         <div className="trip-setup__fields card">
-          <h2 className="section-title">Plan your trip</h2>
+          <h2 className="section-title">What’s on your mind?</h2>
 
           <div className="field-row">
             <FieldLabel htmlFor="origin-field">Starting point</FieldLabel>
@@ -82,7 +91,7 @@ export default function TripSetup({
               id="origin-field"
               label="Starting point"
               icon="pin"
-              value={getPlaceOrNull(state.originId)}
+              value={originDisplay}
               suggestions={ORIGIN_SUGGESTION_IDS.map(getPlace)}
               placeholder="Choose a starting point"
               onSelect={onSetOrigin}
@@ -107,7 +116,9 @@ export default function TripSetup({
               onSelect={onSetDestination}
             />
           </div>
+        </div>
 
+        <div className="trip-setup__controls card">
           <div className="trip-setup__stops">
             <div className="trip-setup__stops-header">
               <h3 className="field-label">Stops (optional)</h3>
@@ -127,9 +138,7 @@ export default function TripSetup({
               compact
             />
           </div>
-        </div>
 
-        <div className="trip-setup__controls card">
           <ModeSelector value={state.mode} onChange={onSetMode} />
 
           <fieldset className="preference-selector">
@@ -171,19 +180,9 @@ export default function TripSetup({
               <Icon name="route" size={20} />
               Compare routes
             </button>
-            <p className="trip-setup__scenario">{DEMO_TRIP.scenario}</p>
           </div>
         </div>
       </div>
-
-      {!hasAnyContent && !showContextSheet ? (
-        <EmptyState
-          title="Compare routes that fit your priorities"
-          body="Raah shows five route options side by side — time, cost, walking distance, weather exposure, and safety-supporting signals — so you can choose the trade-off instead of accepting one opaque path. All data is synthetic demo data."
-          actionLabel={`Try ${getPlace(DEMO_TRIP.recommendedDestinationId).name}`}
-          onAction={() => onSetDestination(DEMO_TRIP.recommendedDestinationId)}
-        />
-      ) : null}
     </div>
   );
 }

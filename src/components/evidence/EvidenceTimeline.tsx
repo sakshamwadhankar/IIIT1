@@ -15,7 +15,7 @@ export default function EvidenceTimeline({ items }: EvidenceTimelineProps) {
     return (
       <p className="evidence-empty">
         <Icon name="info" size={16} />
-        No recent route-relevant updates in this demo area.
+        No recent route-relevant updates in this area.
       </p>
     );
   }
@@ -43,7 +43,7 @@ export default function EvidenceTimeline({ items }: EvidenceTimelineProps) {
             {item.period ? ` · Period: ${item.period}` : ''} · Observed {item.observedAt}
           </p>
           <p className="evidence-card__meta">
-            Source: {item.sourceLabel} · {CONFIDENCE_LABEL[item.confidence]} · Demo item
+            Source: {item.sourceLabel} · {CONFIDENCE_LABEL[item.confidence]}
           </p>
         </li>
       ))}

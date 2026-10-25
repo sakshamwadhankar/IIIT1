@@ -152,7 +152,7 @@ export default function RouteCard({
 
       <p className="route-card__confidence">
         <Icon name="info" size={14} />
-        {CONFIDENCE_LABEL[route.confidence]} · Updated for demo time · Synthetic demo data
+        {CONFIDENCE_LABEL[route.confidence]} · Updated recently
       </p>
 
       <footer className="route-card__actions">

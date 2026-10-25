@@ -6,27 +6,11 @@ import StopSearchPanel from '../components/stops/StopSearchPanel';
 import InstallHelpPanel from '../components/app/InstallHelpPanel';
 import PreStartConfirmation from '../components/app/PreStartConfirmation';
 import ActiveRoutePreview from '../components/app/ActiveRoutePreview';
-import OfflineBanner from '../components/app/OfflineBanner';
 import { usePlannerState } from '../hooks/usePlannerState';
-import { useOfflineStatus, useRouteComparison } from '../hooks/useRouteComparison';
+import { useRouteComparison } from '../hooks/useRouteComparison';
 import { usePwaInstall } from '../hooks/usePwaInstall';
-import { getPlace } from '../data/places';
 import { PREFERENCE_CHIPS } from '../data/preferences';
 import type { PreferenceKey } from '../types/planner';
-
-function tripStateLine(
-  activeView: string,
-  originId: string | null,
-  destinationId: string | null,
-  hasSelection: boolean,
-): string {
-  const origin = originId ? getPlace(originId).name : 'no origin yet';
-  const destination = destinationId ? getPlace(destinationId).name : 'no destination yet';
-  if (activeView === 'active-preview') return `Active preview · ${origin} → ${destination}`;
-  if (activeView === 'pre-start') return `Ready to start · ${origin} → ${destination}`;
-  if (activeView === 'comparison') return `Comparing routes · ${origin} → ${destination}`;
-  return `Planning · ${origin} → ${destination}${hasSelection ? '' : ''}`;
-}
 
 /**
  * Raah — route comparison planner. Single-page app with URL-independent
@@ -35,7 +19,6 @@ function tripStateLine(
 export default function App() {
   const { state, dispatch } = usePlannerState();
   const { result, isComparing } = useRouteComparison(state, dispatch);
-  const offline = useOfflineStatus();
   const { support, install, dismissHint: _dismissHint } = usePwaInstall();
 
   const selectedRanked =
@@ -57,8 +40,6 @@ export default function App() {
 
   return (
     <AppShell
-      tripState={tripStateLine(state.activeView, state.originId, state.destinationId, Boolean(state.selectedRouteId))}
-      offline={offline}
       installSupport={support}
       onOpenInstallHelp={() => dispatch({ type: 'OPEN_PANEL', panel: 'install-help' })}
     >
@@ -66,14 +47,9 @@ export default function App() {
         {state.announcement}
       </p>
 
-      <OfflineBanner offline={offline} />
-
       {state.activeView === 'planner' ? (
         <TripSetup
           state={state}
-          onConfirmContext={() => dispatch({ type: 'CONFIRM_CONTEXT' })}
-          onChangeOrigin={(placeId) => dispatch({ type: 'SET_ORIGIN', placeId })}
-          onDismissContext={() => dispatch({ type: 'DISMISS_CONTEXT' })}
           onSetOrigin={(placeId) => dispatch({ type: 'SET_ORIGIN', placeId })}
           onSetDestination={(placeId) => dispatch({ type: 'SET_DESTINATION', placeId })}
           onAddStop={() => dispatch({ type: 'OPEN_PANEL', panel: 'stop-search' })}

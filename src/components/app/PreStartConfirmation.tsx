@@ -32,11 +32,10 @@ export default function PreStartConfirmation({
 
   const sharePreview = async () => {
     const text = [
-      `Raah trip preview (demo): ${route.name} (${routeLabelTitle(route.label)})`,
+      `Raah trip preview: ${route.name} (${routeLabelTitle(route.label)})`,
       `${formatMinutes(totals.etaMinutes)} total · ${formatFare(totals.fareInr)} · ${formatWalking(totals.walkingMeters)} walking · ${totals.stopCount} stop${totals.stopCount === 1 ? '' : 's'}`,
       `Why: ${ranked.reasons.slice(0, 2).join(' ')}`,
       `Caveat: ${ranked.caveat}`,
-      'All data is synthetic demo data.',
     ].join('\n');
     try {
       if (navigator.clipboard?.writeText) {

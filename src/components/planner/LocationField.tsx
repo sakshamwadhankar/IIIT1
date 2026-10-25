@@ -87,7 +87,7 @@ export default function LocationField({
                 <span className="suggestion-row__name">{place.name}</span>
                 <span className="suggestion-row__meta">
                   {place.category === 'origin' || place.category === 'destination'
-                    ? 'Demo place'
+                    ? 'Suggested place'
                     : `Stop · ${place.category}`}
                 </span>
               </button>

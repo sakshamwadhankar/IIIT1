@@ -19,7 +19,7 @@ export const MODE_OPTIONS: Array<{
   {
     id: 'mixed',
     label: 'Mixed',
-    description: 'Combines walking and cab segments. Default for the demo.',
+    description: 'Combines walking and cab segments. The default choice.',
   },
 ];
 

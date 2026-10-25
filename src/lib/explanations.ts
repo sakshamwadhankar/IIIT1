@@ -69,7 +69,7 @@ function buildReasons(input: ExplanationInput): string[] {
 
   if (route.safety.lightingPercent >= 80) {
     candidates.push(
-      `${route.safety.lightingPercent}% of the walking is on well-lit segments (demo survey).`,
+      `${route.safety.lightingPercent}% of the walking is on well-lit segments (area survey).`,
     );
   } else {
     candidates.push(
@@ -95,7 +95,7 @@ function buildReasons(input: ExplanationInput): string[] {
 
   if (route.safety.incidentTrend === 'lower') {
     candidates.push(
-      'Fewer reported incidents than the previous 30-day baseline in this demo corridor (area-level, not a prediction).',
+      'Fewer reported incidents than the previous 30-day baseline in this corridor (area-level, not a prediction).',
     );
   }
 
@@ -112,17 +112,17 @@ function buildReasons(input: ExplanationInput): string[] {
   }
 
   if (route.comfort.cleanliness === 'excellent') {
-    candidates.push('Excellent sidewalk quality in the demo civic survey.');
+    candidates.push('Excellent sidewalk quality in the area civic survey.');
   } else if (route.comfort.cleanliness === 'good') {
-    candidates.push('Good sidewalk quality in the demo civic survey.');
+    candidates.push('Good sidewalk quality in the area civic survey.');
   } else if (route.comfort.cleanliness === 'fair') {
     candidates.push('Sidewalk quality is fair along parts of this route.');
   }
 
   if (route.traffic === 'light') {
-    candidates.push('Light traffic on this corridor at the demo time.');
+    candidates.push('Light traffic on this corridor right now.');
   } else if (route.traffic === 'moderate') {
-    candidates.push('Moderate traffic near Market Road at the demo time.');
+    candidates.push('Moderate traffic near Market Road.');
   }
 
   return candidates.slice(0, 5);
@@ -188,7 +188,7 @@ function buildCaveat(input: ExplanationInput): string[] {
     caveats.push('Passes one nightlife-heavy segment.');
   }
   if (route.traffic === 'moderate') {
-    caveats.push('Moderate traffic near Market Road at the demo time.');
+    caveats.push('Moderate traffic near Market Road.');
   }
   if (route.comfort.construction) {
     caveats.push('Construction reported along part of this route.');
@@ -198,7 +198,7 @@ function buildCaveat(input: ExplanationInput): string[] {
     if (timeDelta > 0) {
       caveats.push(`${timeDelta} min slower than the fastest option.`);
     } else {
-      caveats.push('No major caveats in the demo data.');
+      caveats.push('No major caveats for this route.');
     }
   }
   return caveats.slice(0, 2);

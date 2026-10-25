@@ -4,7 +4,8 @@ import type { DemoRoute } from '../types/route';
  * The five demo route fixtures for the primary scenario
  * (North Campus Library → Indiranagar Metro Gate 3).
  *
- * Shared schematic map endpoints: origin (48, 258), destination (352, 58).
+ * Shared illustrated-map endpoints: origin (250, 855), destination (1230, 262)
+ * in the 1558 x 1010 raah-map.svg artwork space; paths follow its white streets.
  * Every value is fictional and deterministic. Each route has a clear reason
  * to exist and at least one trade-off.
  */
@@ -55,13 +56,16 @@ export const ROUTES: DemoRoute[] = [
       'ev-rep-pharmacy',
     ],
     mapPath: [
-      { x: 48, y: 258 },
-      { x: 88, y: 204 },
-      { x: 136, y: 164 },
-      { x: 190, y: 132 },
-      { x: 248, y: 104 },
-      { x: 304, y: 80 },
-      { x: 352, y: 58 },
+      { x: 250, y: 855 },
+      { x: 350, y: 758 },
+      { x: 450, y: 612 },
+      { x: 600, y: 530 },
+      { x: 720, y: 450 },
+      { x: 800, y: 350 },
+      { x: 840, y: 292 },
+      { x: 1000, y: 300 },
+      { x: 1140, y: 257 },
+      { x: 1230, y: 262 },
     ],
   },
   {
@@ -107,11 +111,10 @@ export const ROUTES: DemoRoute[] = [
       'ev-rep-pharmacy',
     ],
     mapPath: [
-      { x: 48, y: 258 },
-      { x: 124, y: 212 },
-      { x: 200, y: 160 },
-      { x: 276, y: 108 },
-      { x: 352, y: 58 },
+      { x: 250, y: 855 },
+      { x: 840, y: 858 },
+      { x: 840, y: 258 },
+      { x: 1230, y: 262 },
     ],
   },
   {
@@ -160,13 +163,13 @@ export const ROUTES: DemoRoute[] = [
       'ev-rep-pharmacy',
     ],
     mapPath: [
-      { x: 48, y: 258 },
-      { x: 92, y: 272 },
-      { x: 148, y: 264 },
-      { x: 204, y: 240 },
-      { x: 254, y: 204 },
-      { x: 302, y: 148 },
-      { x: 352, y: 58 },
+      { x: 250, y: 855 },
+      { x: 255, y: 985 },
+      { x: 840, y: 965 },
+      { x: 1030, y: 945 },
+      { x: 1030, y: 420 },
+      { x: 1140, y: 300 },
+      { x: 1230, y: 262 },
     ],
   },
   {
@@ -214,13 +217,17 @@ export const ROUTES: DemoRoute[] = [
       'ev-rep-pharmacy',
     ],
     mapPath: [
-      { x: 48, y: 258 },
-      { x: 88, y: 286 },
-      { x: 144, y: 290 },
-      { x: 200, y: 272 },
-      { x: 252, y: 238 },
-      { x: 300, y: 180 },
-      { x: 352, y: 58 },
+      { x: 250, y: 855 },
+      { x: 620, y: 858 },
+      { x: 620, y: 612 },
+      { x: 300, y: 618 },
+      { x: 150, y: 620 },
+      { x: 140, y: 330 },
+      { x: 500, y: 300 },
+      { x: 840, y: 292 },
+      { x: 1000, y: 300 },
+      { x: 1140, y: 257 },
+      { x: 1230, y: 262 },
     ],
   },
   {
@@ -268,12 +275,13 @@ export const ROUTES: DemoRoute[] = [
       'ev-rep-pharmacy',
     ],
     mapPath: [
-      { x: 48, y: 258 },
-      { x: 110, y: 236 },
-      { x: 172, y: 204 },
-      { x: 234, y: 172 },
-      { x: 290, y: 132 },
-      { x: 352, y: 58 },
+      { x: 250, y: 855 },
+      { x: 350, y: 758 },
+      { x: 450, y: 610 },
+      { x: 620, y: 600 },
+      { x: 840, y: 592 },
+      { x: 840, y: 258 },
+      { x: 1230, y: 262 },
     ],
   },
 ];
